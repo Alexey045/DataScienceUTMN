@@ -71,11 +71,11 @@ class RecommendSystem:
             "objects": self.objects,
             "csr_matrix": self.item_users
         }
-        with open("../model_data.pickle", "wb") as file:
+        with open("model_data.pickle", "wb") as file:
             pickle.dump(model_data, file)
 
     def restore_model(self) -> None:
-        with open("../model_data.pickle", "rb") as file:
+        with open("model_data.pickle", "rb") as file:
             model_data = pickle.load(file)
         self.model = model_data['model']
         self.users_dict = model_data['users_dict']

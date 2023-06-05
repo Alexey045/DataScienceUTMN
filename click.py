@@ -5,16 +5,16 @@ import csv
 MAX_LINES = 1000  # number of lines in the buffer
 
 
+def get_config_settings() -> dict:
+    with open("config.json", "r", encoding="utf-8") as config_file:
+        config = loads(config_file.read())
+    return config
+
+
 class Clickhouse:
     def __init__(self):
-        self.config = Clickhouse.get_config_settings()
+        self.config = get_config_settings()
         self.client = self.get_db_client()
-
-    @staticmethod
-    def get_config_settings() -> dict:
-        with open("config.json", "r") as config_file:
-            config = loads(config_file.read())
-        return config
 
     def get_db_client(self) -> Client:
         client = Client(host=self.config["db"]["host"],
