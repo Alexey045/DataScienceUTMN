@@ -1,7 +1,7 @@
 import numpy as np
 import implicit
 from scipy.sparse import csr_matrix
-from click import click
+from click import click_hs
 import pandas as pd
 import pickle
 
@@ -17,7 +17,7 @@ class RecommendSystem:
         self.item_users_test = None
 
     def train(self) -> None:
-        data_array = np.array(click.client.execute(
+        data_array = np.array(click_hs.client.execute(
             "SELECT toString(UserID) as UserID, ObjectID, "
             "COUNT(DISTINCT toStartOfMinute(ViewDate)) as TotalViews "
             "FROM views2 "
